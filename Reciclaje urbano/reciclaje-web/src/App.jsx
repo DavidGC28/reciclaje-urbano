@@ -58,71 +58,95 @@ export default function App() {
   };
 
   return (
-    <div className="container">
-      <h2>🌱 Gestión de Puntos de Reciclaje</h2>
+    <div>
+      {/* Barra superior temática */}
+      <div className="eco-header-bar">
+        <span>♻️ Red Verde Urbana — Sistema de Gestión Sostenible</span>
+        <span>Panel de Control</span>
+      </div>
 
-      {/* Formulario Estilizado */}
-      <form onSubmit={handleSubmit} className="form-card">
-        <div className="form-group full-width">
-          <label>Nombre del Punto</label>
-          <input
-            type="text"
-            name="nombre"
-            placeholder="Ej. EcoEstación Norte"
-            value={formData.nombre}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Sector</label>
-          <input
-            type="text"
-            name="sector"
-            placeholder="Ej. La Mariscal"
-            value={formData.sector}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Material</label>
-          <input
-            type="text"
-            name="material"
-            placeholder="Ej. Plástico / Papel"
-            value={formData.material}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group full-width">
-          <label>Capacidad (Litros)</label>
-          <input
-            type="number"
-            name="capacidad"
-            placeholder="Ej. 150"
-            value={formData.capacidad}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit" className="btn-submit">
-          Registrar Punto de Reciclaje
-        </button>
-      </form>
+      <div className="container">
+        {/* Formulario Redondeado */}
+        <div className="eco-card">
+          <h2 className="eco-title">🌿 Registrar Nuevo Punto de Reciclaje</h2>
+          
+          <form onSubmit={handleSubmit} className="form-grid">
+            <div className="form-group full-width">
+              <label>Nombre del Punto</label>
+              <input
+                type="text"
+                name="nombre"
+                placeholder="Ej. EcoEstación La Floresta"
+                value={formData.nombre}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            
+            <div className="form-group">
+              <label>Sector</label>
+              <input
+                type="text"
+                name="sector"
+                placeholder="Ej. Centro Norte"
+                value={formData.sector}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-      {/* Listado de Tarjetas */}
-      <h2>Puntos Registrados</h2>
-      {puntos.length === 0 ? (
-        <p style={{ textAlign: 'center', color: '#777' }}>No hay puntos de reciclaje registrados todavía.</p>
-      ) : (
-        <div className="grid-tarjetas">
-          {puntos.map((punto) => (
-            <PuntoCard key={punto.id} punto={punto} />
-          ))}
+            <div className="form-group">
+              <label>Material</label>
+              <input
+                type="text"
+                name="material"
+                placeholder="Ej. Plástico, Vidrio, Papel"
+                value={formData.material}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group full-width">
+              <label>Capacidad (Litros)</label>
+              <input
+                type="number"
+                name="capacidad"
+                placeholder="Ej. 200"
+                value={formData.capacidad}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <button type="submit" className="btn-eco">
+              Registrar Punto
+            </button>
+          </form>
         </div>
-      )}
+
+        {/* Directorio con tarjetas modernas */}
+        <div className="eco-card">
+          <h2 className="eco-title">📍 Puntos de Reciclaje Disponibles</h2>
+          
+          {puntos.length === 0 ? (
+            <p style={{ color: '#8c7a6b', textAlign: 'center', padding: '20px 0' }}>
+              Aún no hay puntos registrados en el sistema.
+            </p>
+          ) : (
+            <div className="grid-tarjetas">
+              {puntos.map((punto) => (
+                <PuntoCard key={punto.id} punto={punto} />
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Pie de página */}
+        <footer className="eco-footer">
+          <p>Comprometidos con el desarrollo sostenible y el cuidado ambiental.</p>
+        </footer>
+      </div>
     </div>
   );
 }
